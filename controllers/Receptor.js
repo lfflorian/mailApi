@@ -1,6 +1,7 @@
 'use strict'
 
 const Receptor = require('../models/Receptor')
+const mailer = require('../services/mail')
 
 function crearReceptor(req, res) {
     let receptor = new Receptor()
@@ -22,8 +23,21 @@ function devolverReceptores(req, res) {
     })
 }
 
+function enviarCorreo(req, res) {
+    let correo = req.body.correo
+    let mensaje = req.body.mensaje
+    let asunto = req.body.asunto
+
+    mailer.enviarCorreo(correo, mensaje, asunto).then(response => {
+        res.status(200).send(response)
+    }).catch(response => {
+        res.status(500).send(response)
+    })
+}
+
 
 module.exports = {
     crearReceptor,
-    devolverReceptores
+    devolverReceptores,
+    enviarCorreo
 }
