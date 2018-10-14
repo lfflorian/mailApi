@@ -7,6 +7,6 @@ const api = require('./routes');
 
 app.use(bodyParse.urlencoded({ extended: false }))
 app.use(bodyParse.json())
-app.use('./api', api)
+app.use('/api', api)
 
 module.exports = app;
