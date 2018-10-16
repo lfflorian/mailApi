@@ -4,6 +4,8 @@ const Receptor = require('../models/Receptor')
 const mailer = require('../services/mail')
 
 function crearReceptor(req, res) {
+    //
+    console.log('LLamada')
     let receptor = new Receptor()
     receptor.nombre = req.body.nombre
     receptor.correo = req.body.correo
@@ -16,6 +18,8 @@ function crearReceptor(req, res) {
 }
 
 function devolverReceptores(req, res) {
+    //
+    console.log('LLamada')
     Receptor.find({}, (err, receptores) => {
         if (err) res.status(500).send({ mensaje: 'No se pudo obtener los receptores, el error es: ' + err})
         
